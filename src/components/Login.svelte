@@ -1,10 +1,38 @@
 <script lang="ts">
-  import { Link } from "svelte-routing";
+  import { Link, navigate } from "svelte-routing";
+  import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+  import { onMount } from "svelte";
+  import { fade, fly } from "svelte/transition";
+  let email: string;
+  let password: string;
+  let userData: object;
+  onMount(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      navigate("/home");
+    }
+    userData = JSON.parse(localStorage.getItem("user")) || {};
+  });
+  const auth = getAuth();
+
+  const handleSubmit = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        localStorage.setItem("user", JSON.stringify(user));
+        navigate("/home");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
 </script>
 
 <main>
   <section class="bg-main">
-    <div class="container py-5 h-100">
+    <div class="container py-5 h-100" in:fly={{ x: 200, duration: 2000 }}>
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card bg-dark text-white" style="border-radius: 1rem;">
@@ -20,6 +48,7 @@
                     type="email"
                     id="typeEmailX"
                     class="form-control form-control-lg"
+                    bind:value={email}
                   />
                   <label class="form-label" for="typeEmailX">Email</label>
                 </div>
@@ -29,6 +58,7 @@
                     type="password"
                     id="typePasswordX"
                     class="form-control form-control-lg"
+                    bind:value={password}
                   />
                   <label class="form-label" for="typePasswordX">Password</label>
                 </div>
@@ -37,8 +67,10 @@
                   <a class="text-white-50" href="#!">Forgot password?</a>
                 </p> -->
 
-                <button class="btn btn-outline-light btn-lg px-5" type="submit"
-                  >Login</button
+                <button
+                  class="btn btn-outline-light btn-lg px-5"
+                  type="submit"
+                  on:click={handleSubmit}>Login</button
                 >
 
                 <!-- <div
@@ -59,9 +91,6 @@
               <div>
                 <p class="mb-0">
                   Don't have an account?
-                  <!-- <a href="/signup">
-                    <span class="text-white-50 fw-bold">Sign Up</span>
-                  </a> -->
                   <Link to="/signup">
                     <span class="text-white-50 fw-bold">Sign Up</span>
                   </Link>

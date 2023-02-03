@@ -1,8 +1,21 @@
 <script lang="ts">
-  import { Link } from "svelte-routing";
+  import { Link, navigate } from "svelte-routing";
+  import { onMount } from "svelte";
+  import { fade } from "svelte/transition";
+  import Home from "./Home.svelte";
+
+  onMount(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      navigate("/home");
+    }
+  });
 </script>
 
-<main class="vh-100 d-flex align-items-center justify-content-center">
+<main
+  class="vh-100 d-flex align-items-center justify-content-center"
+  transition:fade
+>
   <div>
     <i>
       <header class="text-center p-5">
@@ -17,14 +30,6 @@
       </div>
     </i>
     <div class="d-flex justify-content-center my-5">
-      <!-- <a href="/login">
-        <button type="button" class="btn btn-primary btn-lg mx-5">Login</button>
-      </a>
-      <a href="/signup">
-        <button type="button" class="btn btn-primary btn-lg mx-5"
-          >Register</button
-        >
-      </a> -->
       <Link to="/login">
         <button type="button" class="btn btn-primary btn-lg mx-5">Login</button>
       </Link>
