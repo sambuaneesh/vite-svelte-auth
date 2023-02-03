@@ -59,6 +59,9 @@
               <div>
                 <p class="mb-0">
                   Don't have an account?
+                  <!-- <a href="/signup">
+                    <span class="text-white-50 fw-bold">Sign Up</span>
+                  </a> -->
                   <Link to="/signup">
                     <span class="text-white-50 fw-bold">Sign Up</span>
                   </Link>

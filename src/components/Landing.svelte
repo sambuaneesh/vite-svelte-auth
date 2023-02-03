@@ -17,6 +17,14 @@
       </div>
     </i>
     <div class="d-flex justify-content-center my-5">
+      <!-- <a href="/login">
+        <button type="button" class="btn btn-primary btn-lg mx-5">Login</button>
+      </a>
+      <a href="/signup">
+        <button type="button" class="btn btn-primary btn-lg mx-5"
+          >Register</button
+        >
+      </a> -->
       <Link to="/login">
         <button type="button" class="btn btn-primary btn-lg mx-5">Login</button>
       </Link>

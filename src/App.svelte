@@ -7,8 +7,8 @@
 </script>
 
 <main>
-  <Navbar />
   <Router>
+    <Navbar />
     <Route path="/"><Landing /></Route>
     <Route path="/login"><Login /></Route>
     <Route path="/signup"><Signup /></Route>

@@ -49,6 +49,9 @@
               <div>
                 <p class="mb-0">
                   Already have an account?
+                  <!-- <a href="/login">
+                    <span class="text-white-50 fw-bold">Log In</span>
+                  </a> -->
                   <Link to="/login">
                     <span class="text-white-50 fw-bold">Log In</span>
                   </Link>
