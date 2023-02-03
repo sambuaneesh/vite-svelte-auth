@@ -1,0 +1,28 @@
+<script>
+</script>
+
+<main class="page d-flex align-items-center justify-content-center">
+  <div>
+    <i>
+      <header class="text-center p-5">
+        <h1 class="display-4">Welcome to Electronic Affidavit!</h1>
+      </header>
+      <div class="container text-center">
+        <p class="lead">
+          Login or Register to our page to continue the affidavit process
+        </p>
+      </div>
+    </i>
+    <div class="d-flex justify-content-center my-5">
+      <button type="button" class="btn btn-primary btn-lg mx-5">Login</button>
+      <button type="button" class="btn btn-primary btn-lg mx-5">Register</button
+      >
+    </div>
+  </div>
+</main>
+
+<style>
+  main > div {
+    margin-top: -10%;
+  }
+</style>
