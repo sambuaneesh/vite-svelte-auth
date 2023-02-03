@@ -1,4 +1,6 @@
-<script></script>
+<script lang="ts">
+  import { Link } from "svelte-routing";
+</script>
 
 <main>
   <section class="bg-main">
@@ -56,10 +58,10 @@
 
               <div>
                 <p class="mb-0">
-                  Don't have an account? <a
-                    href="#!"
-                    class="text-white-50 fw-bold">Sign Up</a
-                  >
+                  Don't have an account?
+                  <Link to="/signup">
+                    <span class="text-white-50 fw-bold">Sign Up</span>
+                  </Link>
                 </p>
               </div>
             </div>

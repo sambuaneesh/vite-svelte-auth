@@ -3,13 +3,16 @@
   import Login from "./components/Login.svelte";
   import Signup from "./components/Signup.svelte";
   import Landing from "./components/Landing.svelte";
+  import { Router, Route } from "svelte-routing";
 </script>
 
 <main>
   <Navbar />
-  <Landing />
-  <Login />
-  <Signup />
+  <Router>
+    <Route path="/"><Landing /></Route>
+    <Route path="/login"><Login /></Route>
+    <Route path="/signup"><Signup /></Route>
+  </Router>
 </main>
 
 <style>

@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+  import { Link } from "svelte-routing";
 </script>
 
 <main class="vh-100 d-flex align-items-center justify-content-center">
@@ -16,9 +17,14 @@
       </div>
     </i>
     <div class="d-flex justify-content-center my-5">
-      <button type="button" class="btn btn-primary btn-lg mx-5">Login</button>
-      <button type="button" class="btn btn-primary btn-lg mx-5">Register</button
-      >
+      <Link to="/login">
+        <button type="button" class="btn btn-primary btn-lg mx-5">Login</button>
+      </Link>
+      <Link to="/signup">
+        <button type="button" class="btn btn-primary btn-lg mx-5"
+          >Register</button
+        >
+      </Link>
     </div>
   </div>
 </main>
