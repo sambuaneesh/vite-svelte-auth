@@ -1,12 +1,7 @@
 <script lang="ts">
 </script>
 
-<main class="navigation">
-  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid d-flex justify-content-center">
-      <a class="navbar-brand" href="/"> AUTH </a>
-    </div>
-  </nav> -->
+<main>
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-dark p-4">
       <h5 class="text-white h4">Collapsed content</h5>

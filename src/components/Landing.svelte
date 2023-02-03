@@ -1,11 +1,13 @@
 <script>
 </script>
 
-<main class="page d-flex align-items-center justify-content-center">
+<main class="vh-100 d-flex align-items-center justify-content-center">
   <div>
     <i>
       <header class="text-center p-5">
-        <h1 class="display-4">Welcome to Electronic Affidavit!</h1>
+        <h1 class="display-2 font-weight-bold">
+          Welcome to Electronic Affidavit!
+        </h1>
       </header>
       <div class="container text-center">
         <p class="lead">
