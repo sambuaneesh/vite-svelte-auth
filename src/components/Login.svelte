@@ -5,27 +5,31 @@
   import { fade, fly } from "svelte/transition";
   let email: string;
   let password: string;
-  let userData: object;
+  // let userData: object;
   onMount(() => {
     const user = localStorage.getItem("user");
     if (user) {
       navigate("/home");
     }
-    userData = JSON.parse(localStorage.getItem("user")) || {};
+    // userData = JSON.parse(localStorage.getItem("user")) || {};
   });
   const auth = getAuth();
-
   const handleSubmit = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         localStorage.setItem("user", JSON.stringify(user));
+        // alert(this.user.uuid);
+        console.log(user);
+        console.log(user.phoneNumber);
+
         navigate("/home");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        alert("Check your credentials");
       });
   };
 </script>
