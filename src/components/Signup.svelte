@@ -1,12 +1,14 @@
 <script lang="ts">
   import { Link, navigate } from "svelte-routing";
-  import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    reload,
-  } from "firebase/auth";
+  import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
   import { onMount } from "svelte";
-  import { fly, fade } from "svelte/transition";
+  import { fly } from "svelte/transition";
+  import {
+    validateEmail,
+    validatePhone,
+    validatePassword,
+    supaDetails,
+  } from "./functions";
 
   onMount(() => {
     const user = localStorage.getItem("user");
@@ -16,41 +18,32 @@
   });
   let email: string;
   let password: string;
-  let password2: string;
+  let name: string;
+  let phone: string;
 
   const auth = getAuth();
-  // regEX for email
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
-
   const submitHandle = () => {
-    if (password != password2) {
-      alert("Passwords are not matching!!");
-      // window.location.reload();
-    } else if (!validateEmail(email)) alert("invalid email");
-    else if (password == null) alert("password cannot be empty");
-    else if (password.length <= 5) alert("password should be min 6 characters");
+    if (!validateEmail(email)) alert("invalid email");
+    else if (!validatePhone(phone)) alert("inter a valid phone number");
+    else if (!validatePassword(password))
+      alert(
+        "Password should contain minimum eight characters, at least one letter, one number and one special character"
+      );
     else {
-      console.log("email :>> ", email);
-      console.log("password :>> ", password);
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          // console.log(user);
           if (user) {
+            // console.log(user);
             alert("Account has been successfully created, You can Login now!");
+            supaDetails(user.uid, name, user.email, password, phone);
             navigate("/login");
           }
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
+          console.log("error.code :>> ", error.code);
+          console.log("error.message :>> ", error.message);
         });
     }
   };
@@ -68,8 +61,15 @@
                 <p class="text-white-50 mb-5">
                   Please enter your email and password and register!
                 </p>
-
-                <div class="form-outline form-white mb-4 my-5">
+                <div class="form-outline form-white mb-4 my-3">
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="Enter name"
+                    bind:value={name}
+                  />
+                </div>
+                <div class="form-outline form-white mb-4 my-3">
                   <input
                     type="email"
                     id="typeEmailX"
@@ -78,22 +78,22 @@
                     bind:value={email}
                   />
                 </div>
-                <div class="form-outline form-white mb-4 my-5">
+                <div class="form-outline form-white mb-4 my-3">
+                  <input
+                    type="text"
+                    id="typeEmailX"
+                    class="form-control form-control-lg"
+                    placeholder="Enter phone.no"
+                    bind:value={phone}
+                  />
+                </div>
+                <div class="form-outline form-white mb-4 my-3">
                   <input
                     type="password"
                     id="typePasswordX"
                     class="form-control form-control-lg"
                     placeholder="Enter password"
                     bind:value={password}
-                  />
-                </div>
-                <div class="form-outline form-white mb-4 my-3">
-                  <input
-                    type="password"
-                    id="typePasswordX2"
-                    class="form-control form-control-lg"
-                    placeholder="Enter password again"
-                    bind:value={password2}
                   />
                 </div>
                 <button
