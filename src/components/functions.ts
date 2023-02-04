@@ -16,9 +16,7 @@ export const validatePhone = (phone) => {
 
 // regEX for password
 export const validatePassword = (password) => {
-  return String(password)
-    .toLowerCase()
-    .match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/);
+  return String(password).match(/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/);
 };
 
 export const parsedNumber = (number: string): number => {

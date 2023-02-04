@@ -27,7 +27,7 @@
     else if (!validatePhone(phone)) alert("inter a valid phone number");
     else if (!validatePassword(password))
       alert(
-        "Password should contain minimum eight characters, at least one letter, one number and one special character"
+        "Password should contain minimum eight characters, at least one letter and one number"
       );
     else {
       createUserWithEmailAndPassword(auth, email, password)
